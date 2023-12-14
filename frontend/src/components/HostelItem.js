@@ -6,8 +6,8 @@ const HostelItem = ({ hostel }) => {
     <div>
       <Accordion.Header>{hostel.name}</Accordion.Header>
       <Accordion.Body>
-        <p>{hostel.address}</p>
-        <p>£{hostel.postcode}</p>
+        <p>Address: {hostel.address}</p>
+        <p>Postcode: {hostel.postcode}</p>
       </Accordion.Body>
     </div>
   );
