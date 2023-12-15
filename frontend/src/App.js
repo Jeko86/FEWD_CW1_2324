@@ -1,13 +1,15 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import DisplayHostelsList from "./components/DisplayHostelsList";
+import Home from "./components/Home";
+import "leaflet/dist/leaflet.css";
 
 function App() {
   return (
     <div className="App">
-      <DisplayHostelsList />
+      <Home />
     </div>
   );
+  
 }
 
 export default App;
