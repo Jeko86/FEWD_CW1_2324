@@ -7,6 +7,7 @@ const useFetchData = () => {
         name:"",
         Address:"",
         postcode:"",
+        
       }]);
 
   const fetchData = useCallback(() => {

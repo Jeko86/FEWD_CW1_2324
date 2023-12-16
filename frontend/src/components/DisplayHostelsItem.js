@@ -2,7 +2,7 @@ import React from 'react';
 import HostelItem from './HostelItem';
 import Accordion from "react-bootstrap/Accordion";
 
-const DisplayHostels = ({ hostels }) => {
+const DisplayHostelsItem = ({ hostels }) => {
     return (
       <Accordion>
         {hostels.map((hostels,index) => {
@@ -15,4 +15,4 @@ const DisplayHostels = ({ hostels }) => {
       </Accordion>
     );
   };
-  export default DisplayHostels;
+  export default DisplayHostelsItem;
