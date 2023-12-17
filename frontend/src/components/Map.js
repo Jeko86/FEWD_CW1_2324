@@ -16,7 +16,6 @@ const Map = ({ hostels }) => {
   const position = [55.86639, -4.24919];
 
 
-
     const markerClicked = (hostels) => {   
         setActiveHostel(hostels)
     }
@@ -35,29 +34,29 @@ const Map = ({ hostels }) => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {hostels.map((Hostels) => (
+        {hostels.map((hostels) => (
             <Marker           
-                key={Hostels.id}
+                key={hostels.id}
                 position={[
-                    Hostels.location.lat, 
-                    Hostels.location.long,
+                    hostels.location.lat, 
+                    hostels.location.long,
                 ]}
                 icon={icon}
 
-                eventHandlers={{ click: () => markerClicked(Hostels) }}  
+                eventHandlers={{ click: () => markerClicked(hostels) }}  
             >
                 <Popup>
                     <div className="popup" role="alert">
 
-                        Here is the location of the {Hostels.name} <br />
-                        Address:{Hostels.address}
+                        Here is the location of the {hostels.name} <br />
+                        Address:{hostels.address}
                     </div>
                 </Popup>
             </Marker>
         ))}
 
         </MapContainer>            
-            <div className="info">The Hostel you have currently selected is {activeHostel.name}.</div>
+            <div className="info">Hostel {activeHostel.name}: {activeHostel.description}</div>
         </>
     );
 };

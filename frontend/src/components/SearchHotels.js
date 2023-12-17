@@ -8,8 +8,13 @@ function Search({ hostel }) {
 
     //function to loop through the list of menu items
     const filtered = hostel.filter((entry) => {        
-        return entry.name.toLowerCase().includes(searchField.toLowerCase())|| entry.postcode.toLowerCase().includes(searchField.toLowerCase());
+        return (         
+            entry.name.toLowerCase().includes(searchField.toLowerCase()) ||
+            (searchField.toLowerCase() === 'cafe' && entry.cafe === true)||
+            entry.postcode.toLowerCase().includes(searchField.toLowerCase())            
+        );
     });
+    
     
   return (
     <div>

@@ -10,10 +10,10 @@ const HostelItem = ({ hostel }) => {
       <Accordion.Body>
         <p>Address: {hostel.address}</p>
         <p>Postcode: {hostel.postcode}</p>
-        <p>lat: {hostel.location.lat}</p>
-        <p>long: {hostel.location.long}</p>
       </Accordion.Body>
     </div>
   );
 };
 export default HostelItem;
+
+
