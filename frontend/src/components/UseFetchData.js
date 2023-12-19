@@ -3,11 +3,17 @@ import  { useEffect, useState, useCallback } from "react";
 const useFetchData = () => {
     const [status, setStatus] = useState('idle');
     const [hostels, setHostels]=useState([{
-        id:"",
-        name:"",
-        Address:"",
-        postcode:"",
-        
+      id: "",
+      name: "",
+      address: "",
+      postcode: "",
+      phone: "",
+      email: "",
+      description: "",
+      location: { lat: 0, long: 0 },
+      cafe: false,
+      ratings: [],
+      reviews: [],       
       }]);
 
   const fetchData = useCallback(() => {
