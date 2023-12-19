@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import BookContext from "./BookContext";
 import BookSummary from "./BookSummary";
+import SubmitBook from "./SubmitBook";
 
 
 const BookHostel = ({hostels}) => {
@@ -27,7 +28,11 @@ const BookHostel = ({hostels}) => {
             <div className="col-3">
               <BookSummary />
             </div>
-            <div></div>
+
+            <div className="col-3">
+              <SubmitBook />
+            </div>
+
           </BookContext.Provider> 
           </div>
       </div>          
