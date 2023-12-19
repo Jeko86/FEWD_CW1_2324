@@ -6,12 +6,13 @@ import useModal from "./useModal";
 const SubmitBook = () => {
   const [order, setOrder] = useContext(BookContext);
   const [nameField, setNameField] = useState("");
-  const [tableField, setTableField] = useState("");
+  const [dateField, setDateField] = useState(''); // New state for date input
+  const [nightsNumField, setNightsNumField] = useState("");
   const [message, setMessage] = useState("");
   const [isShowingModal, toggleModal] = useModal();
 
   const addOrder = () => {
-    let newOrder = [nameField, tableField, ...order];
+    let newOrder = [nameField,dateField, nightsNumField, ...order];
     const orderString = JSON.stringify(newOrder);
     fetch(`http://localhost:3000/itineraries/new`, {
       method: "POST",
@@ -25,12 +26,13 @@ const SubmitBook = () => {
         setMessage(
           "Hi " +
             nameField +
-            " thank you for your order. You've ordered " +
+            " thank you for your to book this hostel. You've booked " +
             order
         );
         setOrder([]);
         setNameField("");
-        setTableField("");
+        setDateField('');
+        setNightsNumField("");
         toggleModal(message);
       })
       .catch((err) => {
@@ -40,7 +42,7 @@ const SubmitBook = () => {
 
   return (
     <div>
-      <h2>Submit Order</h2>
+      <h2>Submit book</h2>
       <label> Enter your name:</label>
       <input
         className="form-control"
@@ -49,15 +51,23 @@ const SubmitBook = () => {
         value={nameField}
         onChange={(e) => setNameField(e.target.value)}
       />
-      <label> Enter your table number:</label>
+
+      <label>Choose a date:</label>
       <input
-      required
+        className="form-control"
+        type="date"
+        value={dateField}
+        onChange={(e) => setDateField(e.target.value)}
+      />
+
+      <label>N. nights:</label>
+      <input
         className="form-control"
         type="text"
-        placeholder="Enter your table number here ..."
-        value={tableField}
-        onChange={(e) => setTableField(e.target.value)}
+        value={nightsNumField}
+        onChange={(e) => setNightsNumField(e.target.value)}
       />
+
       <button className="button btn btn-primary" onClick={addOrder}>
         Submit order
       </button>
