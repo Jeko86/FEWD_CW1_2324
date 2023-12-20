@@ -1,6 +1,7 @@
 import React from 'react';
 import HostelItem from './HostelItem';
 import Accordion from "react-bootstrap/Accordion";
+import Stars from "./stars";
 
 const DisplayHostelsItem = ({ hostels }) => {
     return (
@@ -9,6 +10,7 @@ const DisplayHostelsItem = ({ hostels }) => {
           return (
             <Accordion.Item eventKey={index} key={index}>
               <HostelItem hostel={hostels} />
+              <Stars position={index} />
             </Accordion.Item>
           );
         })}
