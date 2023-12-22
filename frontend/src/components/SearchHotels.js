@@ -1,36 +1,51 @@
-import React, { useState } from "react"; //Import the useState Hook
+import React, { useState } from "react";
 import DisplayHostelsItem from "./DisplayHostelsItem";
+import Card from 'react-bootstrap/Card'; //co develop card
+import { MdOutlineLocalCafe } from "react-icons/md";
 
-//to pass the data to Search it needs to amend the call so that the Search component is passed all the data about items on the menu
 function Search({ hostel }) {
-    //use the hook to set an initial state and define a function which will update that state
     const [searchField, setSearchField] = useState("");
 
-    //function to loop through the list of menu items
     const filtered = hostel.filter((entry) => {        
-        return (         
+        return (
             entry.name.toLowerCase().includes(searchField.toLowerCase()) ||
-            (searchField.toLowerCase() === 'cafe' && entry.cafe === true)||
+            (searchField.toLowerCase() === 'cafe' && entry.cafe === true) ||
             entry.postcode.toLowerCase().includes(searchField.toLowerCase())            
         );
     });
     
-    
-  return (
-    <div>
+
+    return (
         <div>
-            <input
-                //add an event handler to update the state when the text input changes
-                className="form-control"
-                type="text"
-                placeholder="Search ..."
-                onChange={(e) =>  setSearchField(e.target.value)}
-            />
+            <Card style={{ marginBottom: '15px' }}>
+                <Card.Body>
+                    <div>
+                        <input
+                            className="form-control"
+                            type="text"
+                            placeholder="Search ..."
+                            onChange={(e) => setSearchField(e.target.value)}
+                        />
+                    </div>
+                    <div><h6>Filter by:</h6>
+                        
+                        <label className="checkboxContainer">                          
+                            <p className="checkboxContainer"> 
+                                <input type="checkbox" onChange={(e) => setSearchField(e.target.checked ? 'cafe' : '')}/>
+                                Only show hostel with cafe  <MdOutlineLocalCafe/>
+                            </p>
+                            
+                        </label>
+                    </div>
+                </Card.Body>
+            </Card>
+            <Card style={{ marginTop: '15px' }}>
+                <Card.Body>
+                    <DisplayHostelsItem hostels={filtered} />
+                </Card.Body>
+            </Card>
         </div>
-        <DisplayHostelsItem hostels={filtered} />
-    </div>
-  
-  );
+    );
 }
 
 export default Search;

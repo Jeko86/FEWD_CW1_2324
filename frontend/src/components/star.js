@@ -1,10 +1,10 @@
 import React from "react";
-import {LuCoffee} from "react-icons/lu";
+import { FaStar } from "react-icons/fa";
 
 export default function Star( props) {
   console.log (props.selected)
-  return <LuCoffee 
-        color={props.selected ? "#7863FE" : "#dddddd"}
+  return <FaStar 
+        color={props.selected ? "red" : "gray"}
         onClick={props.onSelect} 
         />;
 }

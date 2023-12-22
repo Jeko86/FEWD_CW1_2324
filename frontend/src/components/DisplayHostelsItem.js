@@ -1,35 +1,42 @@
 import React from 'react';
 import HostelItem from './HostelItem';
-import Accordion from "react-bootstrap/Accordion";
-import Stars from "./stars";
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
+import Stars from './stars';
 
 const DisplayHostelsItem = ({ hostels }) => {
-    return (
+  return (
+    <div style={{ maxHeight: '600px', overflow: 'auto' }}>
       <Accordion>
-        {hostels.map((hostel,index) => {
+        {hostels.map((hostel, index) => {
           return (
             <Accordion.Item eventKey={index} key={index}>
               <HostelItem hostel={hostel} />
-              <Stars position={index} />
+              <div style={{ marginLeft: '20px' }}> 
+                <Stars position={index} />
+              </div>
               <Accordion.Body>
-
-                <p>Reviews:</p>
-                <ul>
-                  {hostel.reviews.map((review, reviewIndex) => (
-                    
-                    <li key={reviewIndex}>
-                      <p>{review.reviewer}:{review.review}</p>
-                    </li>
-
-                  ))}
-
-                </ul>
+                <Card>
+                  <Card.Body>
+                    <p>Reviews:</p>
+                    <ul>
+                      {hostel.reviews.map((review, reviewIndex) => (
+                        <li key={reviewIndex}>
+                          <p>
+                            {review.reviewer}:{review.review}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </Card.Body>
+                </Card>
               </Accordion.Body>
-
-            </Accordion.Item>            
+            </Accordion.Item>
           );
         })}
       </Accordion>
-    );
-  };
-  export default DisplayHostelsItem;
+    </div>
+  );
+};
+
+export default DisplayHostelsItem;

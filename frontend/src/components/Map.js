@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
+import Stars from './stars';
 
 
 const Map = ({ hostels }) => {
@@ -22,11 +23,11 @@ const Map = ({ hostels }) => {
 
     return (
         <>
-        <MapContainer
+        <MapContainer 
             center={position}
-            zoom={9}
+            zoom={7}
             scrollWheelZoom={true}
-            className="map"
+            class="map"
         >
 
         <TileLayer
@@ -34,7 +35,7 @@ const Map = ({ hostels }) => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {hostels.map((hostels) => (
+        {hostels.map((hostels, index) => (
             <Marker           
                 key={hostels.id}
                 position={[
@@ -47,9 +48,7 @@ const Map = ({ hostels }) => {
             >
                 <Popup>
                     <div className="popup" role="alert">
-
-                        Here is the location of the {hostels.name} <br />
-                        Address:{hostels.address}
+                        <h6>{hostels.name} <Stars position={index}/></h6>                        
                     </div>
                 </Popup>
             </Marker>
