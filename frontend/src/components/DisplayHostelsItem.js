@@ -6,12 +6,27 @@ import Stars from "./stars";
 const DisplayHostelsItem = ({ hostels }) => {
     return (
       <Accordion>
-        {hostels.map((hostels,index) => {
+        {hostels.map((hostel,index) => {
           return (
             <Accordion.Item eventKey={index} key={index}>
-              <HostelItem hostel={hostels} />
+              <HostelItem hostel={hostel} />
               <Stars position={index} />
-            </Accordion.Item>
+              <Accordion.Body>
+
+                <p>Reviews:</p>
+                <ul>
+                  {hostel.reviews.map((review, reviewIndex) => (
+                    
+                    <li key={reviewIndex}>
+                      <p>{review.reviewer}:{review.review}</p>
+                    </li>
+
+                  ))}
+
+                </ul>
+              </Accordion.Body>
+
+            </Accordion.Item>            
           );
         })}
       </Accordion>
