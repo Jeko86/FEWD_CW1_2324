@@ -14,7 +14,7 @@ const Map = ({ hostels }) => {
 
   const initialMarker =  {};
   const [activeHostel, setActiveHostel] = useState(initialMarker);
-  const position = [55.86639, -4.24919];
+  const position = [57.480662, -4.211335];
 
 
     const markerClicked = (hostels) => {   
@@ -23,7 +23,7 @@ const Map = ({ hostels }) => {
 
     return (
         <>
-        <MapContainer 
+        <MapContainer style={{ height: '60vh', marginBottom: '20px'}}
             center={position}
             zoom={7}
             scrollWheelZoom={true}
@@ -54,12 +54,10 @@ const Map = ({ hostels }) => {
             </Marker>
         ))}
 
-        </MapContainer>            
-            <div className="info">Hostel {activeHostel.name}: {activeHostel.description}</div>
+        </MapContainer>  
+
+        <div className="info" style={{ height: 'auto' }}>Hostel {activeHostel.name}: {activeHostel.description}</div>
         </>
     );
 };
 export default Map;
-
-
-

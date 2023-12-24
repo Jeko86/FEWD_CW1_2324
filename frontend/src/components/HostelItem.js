@@ -1,5 +1,6 @@
 import React from "react";
 import Accordion from 'react-bootstrap/Accordion';
+import { MdOutlineLocalCafe } from "react-icons/md";
 
 
 //pass the information of of the hostells array to the HostelItem 
@@ -9,9 +10,14 @@ const HostelItem = ({ hostel, index }) => {
     <div>
       <Accordion.Header>{hostel.name}</Accordion.Header>
       <Accordion.Body>
-        <p>Address: {hostel.address}</p>
-        <p>Postcode: {hostel.postcode}</p>
+        <p>Address: {hostel.address} {hostel.postcode}</p>
         
+        {hostel.cafe === true ? (
+          <p>Facilities: <MdOutlineLocalCafe /> </p>
+        ) : (
+          <p>Facilities: - </p>
+        )}
+
       </Accordion.Body>
     </div>
   );
