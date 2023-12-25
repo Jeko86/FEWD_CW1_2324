@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DisplayHostelsInfo from "./DisplayHostelsinfo";
+import DisplayHostelsInfo from "./DisplayHostelsInfo";
 import Card from 'react-bootstrap/Card';
 import Map from "./Map";
 
