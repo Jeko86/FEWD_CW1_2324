@@ -2,12 +2,9 @@ import React from "react";
 import HostelItem from './HostelItem';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
-import Stars from './stars';
-
-
 
 const DisplayHostelsItem = ({ hostels }) => {
-
+  
   return (
     <div style={{ maxHeight: '600px', overflow: 'auto' }}>
       <Accordion>
@@ -15,10 +12,6 @@ const DisplayHostelsItem = ({ hostels }) => {
           return (
             <Accordion.Item eventKey={index} key={index}>
               <HostelItem hostel={hostel} />
-              <div style={{ marginLeft: '20px' }}> 
-                <Stars position={index} />
-                
-              </div>
               <Accordion.Body>
                 <Card>
                   <Card.Body>
@@ -35,6 +28,7 @@ const DisplayHostelsItem = ({ hostels }) => {
                   </Card.Body>
                 </Card>
               </Accordion.Body>
+              
             </Accordion.Item>
           );
         })}
