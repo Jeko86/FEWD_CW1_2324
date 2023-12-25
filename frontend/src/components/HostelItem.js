@@ -5,24 +5,21 @@ import Stars from './stars';
 
 
 //pass the information of of the hostells array to the HostelItem 
-//each ellement of hte array is an objet and it is used dot notation to access to properties to display
+//each ellement of the array is an objet and it is used dot notation to access to properties to display
 const HostelItem = ({ hostel, index }) => {
   return (
     <div>
       <Accordion.Header>{hostel.name}</Accordion.Header>
+            
       <Accordion.Body>
-      <Stars position={index} /> 
+        <Stars position={index} /> 
 
         <p>Address: {hostel.address} {hostel.postcode}</p>
-        
-        {hostel.cafe === true ? (
-          <p>Facilities: <MdOutlineLocalCafe /> </p>
-        ) : (
-          <p>Facilities: - </p>
-        )}
+            
+        {hostel.cafe === true ? (<p>Facilities: <MdOutlineLocalCafe /> </p>) : (<p>Facilities: - </p>)}
 
       </Accordion.Body>
-    </div>
+    </div> 
   );
 };
 export default HostelItem;

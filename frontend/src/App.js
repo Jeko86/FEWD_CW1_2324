@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import Home from "./components/Home";
+import Home from "./components/HomePage";
 import "leaflet/dist/leaflet.css";
 import NavigationBar from "./components/NavigationBar";
 import DisplayHostelList from "./components/DisplayHostelList";
