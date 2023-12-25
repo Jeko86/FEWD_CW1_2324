@@ -12,7 +12,6 @@ export default function BookSummary() {
 
   return (
     <div>
-      <h2>Your Book</h2>
       <ul className = "list-group">
         {book.map((hostels, index) => (
           <li className="order-list  list-group-item"  key={index} onClick={(e) => removeHostel(e, hostels)}>

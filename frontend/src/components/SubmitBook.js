@@ -41,8 +41,7 @@ const SubmitBook = () => {
   };
 
   return (
-    <div>
-      <h2>Submit book</h2>
+    <div>      
       <label> Enter your name:</label>
       <input
         className="form-control"

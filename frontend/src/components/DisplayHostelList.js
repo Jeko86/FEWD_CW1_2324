@@ -6,12 +6,21 @@ const DisplayHostelList = () => {
     const {status, hostels} = useFetchData();
     if (status==='fetched')
     return (
-      <div>
-        <BookHostel hostels={hostels} /> 
-      </div>
-    );
-    return<p>There is currently an issue displaying the hostels list</p>
+        <div className="container-fluid">
+          <div className="row">
+            <div >
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <h3 style={{ marginLeft: '10px' }}>test</h3>
+                <BookHostel hostels={hostels} />                 
+              </div>
+              
+            </div>                         
+          </div>     
+        </div>
+      );
   };
+
+
   export default DisplayHostelList;
   
 
