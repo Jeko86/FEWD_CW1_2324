@@ -6,7 +6,7 @@ import Stars from './stars';
 
 //pass the information of the hostells array to the HostelItem 
 //each ellement of the array is an objet and it is used dot notation to access to properties to display
-const Hostel_Info = ({ hostel, index }) => {
+const HostelInfo = ({ hostel, index }) => {
   return (
     <div>
       <Accordion.Header>{hostel.name}</Accordion.Header>
@@ -22,6 +22,6 @@ const Hostel_Info = ({ hostel, index }) => {
     </div> 
   );
 };
-export default Hostel_Info;
+export default HostelInfo;
 
 
