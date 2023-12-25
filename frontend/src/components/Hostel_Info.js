@@ -4,13 +4,13 @@ import { MdOutlineLocalCafe } from "react-icons/md";
 import Stars from './stars';
 
 
-//pass the information of of the hostells array to the HostelItem 
+//pass the information of the hostells array to the HostelItem 
 //each ellement of the array is an objet and it is used dot notation to access to properties to display
-const HostelItem = ({ hostel, index }) => {
+const Hostel_Info = ({ hostel, index }) => {
   return (
     <div>
       <Accordion.Header>{hostel.name}</Accordion.Header>
-            
+
       <Accordion.Body>
         <Stars position={index} /> 
 
@@ -22,6 +22,6 @@ const HostelItem = ({ hostel, index }) => {
     </div> 
   );
 };
-export default HostelItem;
+export default Hostel_Info;
 
 

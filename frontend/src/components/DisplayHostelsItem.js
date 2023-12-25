@@ -1,5 +1,5 @@
 import React from "react";
-import HostelItem from './HostelItem';
+import Hostel_Info from "./Hostel_Info";
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 
@@ -11,7 +11,7 @@ const DisplayHostelsItem = ({ hostels }) => {
         {hostels.map((hostel, index) => {
           return (
             <Accordion.Item eventKey={index} key={index}>
-              <HostelItem hostel={hostel} />
+              <Hostel_Info hostel={hostel} />
               <Accordion.Body>
                 <Card>
                   <Card.Body>
