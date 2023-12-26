@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import BookContext from "./BookContext";
 import BookSummary from "./BookSummary";
 import SubmitBook from "./SubmitBook";
+import Stars from './stars';
 
 const DisplayHostelsInfo = ({ hostels }) => {
   const [selectHostel, setSelectHostel] = useState([]);
@@ -22,6 +23,9 @@ const DisplayHostelsInfo = ({ hostels }) => {
           {hostels.map((hostel, index) => (
             <Accordion.Item eventKey={index} key={index}>
               <HostelInfo hostel={hostel} />
+              <div style={{ marginLeft: '20px' }}> 
+                <Stars position={index} />               
+              </div>
               <Accordion.Body>
                 <Card>
                   <Card.Body>
