@@ -22,6 +22,7 @@ const DisplayHostelsInfo = ({ hostels }) => {
         <Accordion>
           {hostels.map((hostel, index) => (
             <Accordion.Item eventKey={index} key={index}>
+              
               <HostelInfo hostel={hostel} />
               <div style={{ marginLeft: '20px' }}> 
                 <Stars position={index} />               

@@ -4,15 +4,15 @@ import { MdOutlineLocalCafe } from "react-icons/md";
 
 
 
-//pass the information of the hostells array to the HostelItem 
+//pass the information of the hostels array to the HostelItem 
 //each ellement of the array is an objet and it is used dot notation to access to properties to display
 const HostelInfo = ({ hostel, index }) => {
   return (
     <div>
-      <Accordion.Header>{hostel.name}</Accordion.Header>
+      <Accordion.Header><strong>{hostel.name}</strong></Accordion.Header>
 
       <Accordion.Body>
-        
+
         <p>Address: {hostel.address} {hostel.postcode}</p>
             
         {hostel.cafe === true ? (<p>Facilities: <MdOutlineLocalCafe /> </p>) : (<p>Facilities: - </p>)}
