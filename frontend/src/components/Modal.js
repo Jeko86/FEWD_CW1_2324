@@ -4,13 +4,13 @@ const Modal = ({ show, onCloseButtonClick, message }) => {
     }
   
     return (
-      <div className="modal-wrapper">
+      <div>
            
-        <div className="modal-main">
-          <div className="body">
+        <div>
+          <div>
             {message}
           </div>
-          <div className="footer">
+          <div>
             <button onClick={onCloseButtonClick}>X</button>
           </div>
         </div>

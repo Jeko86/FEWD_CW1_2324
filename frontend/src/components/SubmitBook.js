@@ -1,55 +1,79 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
+import { useLocalStorage } from "./useLocalStorage";
 import BookContext from "./BookContext";
-import Modal from "./Modal";
-import useModal from "./useModal";
 import Button from 'react-bootstrap/Button';
 
-const SubmitBook = () => {
-  const [order, setOrder] = useContext(BookContext);
-  const [nameField, setNameField] = useState("");
-  const [dateField, setDateField] = useState(''); // New state for date input
-  const [nightsNumField, setNightsNumField] = useState("");
-  const [message, setMessage] = useState("");
-  const [isShowingModal, toggleModal] = useModal();
+export default function BookInput({ position }) {
+  
+  const positionInMenu = JSON.stringify(position);
+  const [nameField, setNameField] = useLocalStorage(`$positionInMenu_name`, "");
+  const [dateField, setDateField] = useLocalStorage(`$positionInMenu_date`, "");
+  const [nightsNumField, setNightsNumField] = useLocalStorage(`$positionInMenu_nightsNum`, "");
 
-  const addOrder = () => {
-    let newOrder = [nameField,dateField, nightsNumField, ...order];
-    const orderString = JSON.stringify(newOrder);
-    fetch(`http://localhost:3000/itineraries/new`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*     ",
-        "Content-Type": "application/json",
-      },
-      body: orderString,
-    })
-      .then(() => {
-        setMessage(
-          "Hi " +
-            nameField +
-            " thank you for your to book this hostel. You've booked " +
-            order
-        );
-        setOrder([]);
-        setNameField("");
-        setDateField('');
-        setNightsNumField("");
-        toggleModal(message);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const [data, setData] = useLocalStorage(`${positionInMenu}_data`, []);
+  const [itineraries, setItineraries] = useLocalStorage("itineraries", []);
+
+  const [hostelSelected] = useContext(BookContext);
+
+  const handleNameChange = (e) => {
+    setNameField(e.target.value);
+  };
+
+  const handleDateChange = (e) => {
+    setDateField(e.target.value);
+  };
+
+  const handleNightsNumChange = (e) => {
+    setNightsNumField(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    // Check if required fields are empty
+    if (!nameField || !dateField || !nightsNumField || !hostelSelected) {
+      // Display an error message or handle it as per your requirement
+      alert("Please fill in all the required fields");
+      return;
+    }
+
+    const newStage = {
+      stage: data.length + 1,
+      hostel: hostelSelected,
+      nights: parseInt(nightsNumField, 10),
+    };
+
+    const newData = {
+      user: nameField,
+      startdate: new Date(dateField),
+      stages: [newStage],
+    };
+
+    setNameField("");
+    setDateField("");
+    setNightsNumField("");
+
+    // Update the data array
+    setData([...data, newData]);
+
+    // Update the itineraries array
+    setItineraries([...itineraries, newData]);
+  };
+
+  //remove inserted data from the text and date fields only
+  const handleDelete = () => {
+    setNameField("");
+    setDateField("");
+    setNightsNumField("");
   };
 
   return (
-    <div>      
+    <div>
       <label> Enter your name:</label>
       <input
         className="form-control"
         type="text"
         placeholder="Enter your name here ..."
         value={nameField}
-        onChange={(e) => setNameField(e.target.value)}
+        onChange={handleNameChange}
       />
 
       <label>Choose a date:</label>
@@ -57,7 +81,7 @@ const SubmitBook = () => {
         className="form-control"
         type="date"
         value={dateField}
-        onChange={(e) => setDateField(e.target.value)}
+        onChange={handleDateChange}
       />
 
       <label>N. nights:</label>
@@ -65,21 +89,13 @@ const SubmitBook = () => {
         className="form-control"
         type="text"
         value={nightsNumField}
-        onChange={(e) => setNightsNumField(e.target.value)}
+        onChange={handleNightsNumChange}
       />
 
       <div className="d-grid gap-2" style={{ marginTop: '10px' }}>
-        <Button variant="secondary" size="sm" onClick={addOrder}> Confirm </Button>
-      </div>
-      <div className="modalContainer">
-
-        <Modal
-          show={isShowingModal}
-          onCloseButtonClick={toggleModal}
-          message={message}
-        />
+        <Button variant="success" size="sm" onClick={handleSubmit}> Confirm </Button>
+        <Button variant="danger" size="sm" onClick={handleDelete}> Delete </Button>
       </div>
     </div>
   );
-};
-export default SubmitBook;
+}
