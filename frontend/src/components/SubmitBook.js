@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import BookContext from "./BookContext";
 import Modal from "./Modal";
 import useModal from "./useModal";
+import Button from 'react-bootstrap/Button';
 
 const SubmitBook = () => {
   const [order, setOrder] = useContext(BookContext);
@@ -67,10 +68,11 @@ const SubmitBook = () => {
         onChange={(e) => setNightsNumField(e.target.value)}
       />
 
-      <button className="button btn btn-primary" onClick={addOrder}>
-        Submit order
-      </button>
+      <div className="d-grid gap-2" style={{ marginTop: '10px' }}>
+        <Button variant="secondary" size="sm" onClick={addOrder}> Confirm </Button>
+      </div>
       <div className="modalContainer">
+
         <Modal
           show={isShowingModal}
           onCloseButtonClick={toggleModal}

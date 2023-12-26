@@ -19,47 +19,43 @@ function Search({ hostel }) {
     });
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-md-4">
-                    <Card style={{ marginBottom: '15px' }}>
-                        <Card.Body>
-                            <div>
-                                <input
-                                    className="form-control"
-                                    type="text"
-                                    placeholder="Search ..."
-                                    onChange={(e) => setSearchField(e.target.value)}
-                                />
-                            </div>
-                            <div>
-                                <h6>Filter by:</h6>
-                                <label className="checkboxContainer">
-                                    <p className="checkboxContainer">
-                                        <input
-                                            type="checkbox"
-                                            onChange={(e) => setShowCafeHostels(e.target.checked)}
-                                        />
-                                        Only show hostels with cafe.
-                                    </p>
-                                </label>
-                            </div>
-                        </Card.Body>
-                    </Card>
-                    <Card style={{ marginTop: '15px' }}>
-                        <Card.Body>
-                            <DisplayHostelsInfo hostels={filtered} />
-                        </Card.Body>
-                    </Card>   
-                </div>
-                <div className="col-md-8" style={{ height: '400px' }}>
-                    <Map hostels={filtered}/>
-                </div>
-            </div>
-        </div>
+        <div className="row">
+            <div className="col-md-8">
+                <Map hostels={filtered}/>
+            </div>    
 
-        
-            
+            <div className="col-md-4">
+                <Card style={{ marginBottom: '15px' }}>
+                    <Card.Body>
+                        <div>
+                            <input
+                                className="form-control"
+                                type="text"
+                                placeholder="Search ..."
+                                onChange={(e) => setSearchField(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <h6>Filter by:</h6>
+                            <label className="checkboxContainer">
+                                <p className="checkboxContainer">
+                                    <input
+                                        type="checkbox"
+                                        onChange={(e) => setShowCafeHostels(e.target.checked)}
+                                    />
+                                    Only show hostels with cafe.
+                                </p>
+                            </label>
+                        </div>
+                    </Card.Body>
+                </Card>
+                <Card style={{ marginTop: '15px' }}>
+                    <Card.Body>
+                        <DisplayHostelsInfo hostels={filtered} />
+                    </Card.Body>
+                </Card>   
+            </div>
+        </div>         
     );
 }
 
