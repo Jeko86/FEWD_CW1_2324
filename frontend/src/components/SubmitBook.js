@@ -4,16 +4,13 @@ import BookContext from "./BookContext";
 import Button from 'react-bootstrap/Button';
 
 export default function BookInput({ position }) {
-  
-  const positionInMenu = JSON.stringify(position);
+
+  let positionInMenu = JSON.stringify(position);
   const [nameField, setNameField] = useLocalStorage(`$positionInMenu_name`, "");
   const [dateField, setDateField] = useLocalStorage(`$positionInMenu_date`, "");
   const [nightsNumField, setNightsNumField] = useLocalStorage(`$positionInMenu_nightsNum`, "");
-
-  const [data, setData] = useLocalStorage(`${positionInMenu}_data`, []);
-  const [itineraries, setItineraries] = useLocalStorage("itineraries", []);
-
-  const [hostelSelected] = useContext(BookContext);
+  const [hostelSelected] = useContext(BookContext);//hostel selected
+  const [itineraries, setItineraries] = useLocalStorage(`${positionInMenu}_data`, []); 
 
   const handleNameChange = (e) => {
     setNameField(e.target.value);
@@ -36,7 +33,7 @@ export default function BookInput({ position }) {
     }
 
     const newStage = {
-      stage: data.length + 1,
+      stage: itineraries.length + 1,
       hostel: hostelSelected,
       nights: parseInt(nightsNumField, 10),
     };
@@ -50,10 +47,7 @@ export default function BookInput({ position }) {
     setNameField("");
     setDateField("");
     setNightsNumField("");
-
-    // Update the data array
-    setData([...data, newData]);
-
+   
     // Update the itineraries array
     setItineraries([...itineraries, newData]);
   };
