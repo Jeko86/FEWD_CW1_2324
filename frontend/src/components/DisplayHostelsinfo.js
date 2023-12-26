@@ -75,5 +75,4 @@ const DisplayHostelsInfo = ({ hostels }) => {
     </div>
   );
 };
-
 export default DisplayHostelsInfo;
