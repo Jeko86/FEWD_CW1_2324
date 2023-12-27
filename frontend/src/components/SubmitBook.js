@@ -3,16 +3,16 @@ import { useLocalStorage } from "./useLocalStorage";
 import BookContext from "./BookContext";
 import Button from 'react-bootstrap/Button';
 
+const position = "itineraries";
 
-export default function BookInput({ position }) {
+export default function BookInput() {
 
-  //let itinerary = JSON.stringify(position);
   const positionInMenu = JSON.stringify(position);
   const [userField, setUserField] = useLocalStorage(`$positionInMenu_user`, "");
   const [dateField, setDateField] = useLocalStorage(`$positionInMenu_date`, ""); // New state for date input
   const [nightsNumField, setNightsNumField] = useLocalStorage(`$positionInMenu_nightsNum`, "");
   const [hostel] = useContext(BookContext);
-  const [itineraries, setItineraries] = useLocalStorage(`${positionInMenu}_itineraries`, []); 
+  const [itineraries, setItineraries] = useLocalStorage(`${positionInMenu}`, []); 
 
   const handleNameChange = (e) => {
     setUserField(e.target.value);
@@ -43,7 +43,7 @@ export default function BookInput({ position }) {
 
     const newData = {
       user: userField,
-      startdate: new Date(dateField),
+      startdate: dateField,
       stages: [newStage],
     };
 
@@ -93,6 +93,22 @@ export default function BookInput({ position }) {
         <Button variant="success" size="sm" onClick={handleSubmit}> Confirm </Button>
         <Button variant="danger" size="sm" onClick={handleDelete}> Delete </Button>
       </div>
+
+      {/* Display stored data */}
+      {itineraries.length > 0 && (
+        <div style={{ marginTop: '20px' }}>
+          <h3>Stored Itineraries</h3>
+          <ul>
+            {itineraries.map((itinerary, index) => (
+              <li key={index}>
+                <strong>User:</strong> {itinerary.user}, 
+                <strong> Start Date:</strong> {itinerary.startdate},
+                <strong> Nights:</strong> {itinerary.stages[0].nights}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
     </div>
   );
