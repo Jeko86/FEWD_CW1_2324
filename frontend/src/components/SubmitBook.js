@@ -3,17 +3,18 @@ import { useLocalStorage } from "./useLocalStorage";
 import BookContext from "./BookContext";
 import Button from 'react-bootstrap/Button';
 
-export default function BookInput({ position }) {
+export default function BookInput({ position }){
 
-  let positionInMenu = JSON.stringify(position);
-  const [nameField, setNameField] = useLocalStorage(`$positionInMenu_name`, "");
-  const [dateField, setDateField] = useLocalStorage(`$positionInMenu_date`, "");
+  const positionInMenu = JSON.stringify(position);
+  const [userField, setUserField] = useLocalStorage(`$positionInMenu_user`, "");
+  const [dateField, setDateField] = useLocalStorage(`$positionInMenu_date`, ""); // New state for date input
   const [nightsNumField, setNightsNumField] = useLocalStorage(`$positionInMenu_nightsNum`, "");
-  const [hostelSelected] = useContext(BookContext);//hostel selected
-  const [itineraries, setItineraries] = useLocalStorage(`${positionInMenu}_data`, []); 
+  const [hostel] = useContext(BookContext);
+  const [itineraries, setItineraries] = useLocalStorage(`${positionInMenu}_itineraries`, []);
+    
 
-  const handleNameChange = (e) => {
-    setNameField(e.target.value);
+  const handleUserChange = (e) => {
+    setUserField(e.target.value);
   };
 
   const handleDateChange = (e) => {
@@ -24,37 +25,28 @@ export default function BookInput({ position }) {
     setNightsNumField(e.target.value);
   };
 
+  const newStage = {
+    stage: itineraries.length + 1,
+    hostel: hostel,
+    nights: parseInt(nightsNumField, 10),
+  };
+
   const handleSubmit = () => {
-    // Check if required fields are empty
-    if (!nameField || !dateField || !nightsNumField || !hostelSelected) {
-      // Display an error message or handle it as per your requirement
-      alert("Please fill in all the required fields");
-      return;
-    }
-
-    const newStage = {
-      stage: itineraries.length + 1,
-      hostel: hostelSelected,
-      nights: parseInt(nightsNumField, 10),
-    };
-
     const newData = {
-      user: nameField,
-      startdate: new Date(dateField),
+      userField,
+      date: dateField,
       stages: [newStage],
     };
 
-    setNameField("");
+    setUserField("");  
     setDateField("");
-    setNightsNumField("");
-   
-    // Update the itineraries array
-    setItineraries([...itineraries, newData]);
+    setNightsNumField("");     
+    setItineraries([...itineraries, newData]);   
   };
 
   //remove inserted data from the text and date fields only
   const handleDelete = () => {
-    setNameField("");
+    setUserField("");
     setDateField("");
     setNightsNumField("");
   };
@@ -63,33 +55,48 @@ export default function BookInput({ position }) {
     <div>
       <label> Enter your name:</label>
       <input
-        className="form-control"
-        type="text"
-        placeholder="Enter your name here ..."
-        value={nameField}
-        onChange={handleNameChange}
-      />
-
-      <label>Choose a date:</label>
+          className="form-control"
+          type="text"
+          placeholder="Enter your name here ..."
+          value={userField}
+          onChange={handleUserChange}
+        />
+  
+      <label>Start date:</label>
       <input
         className="form-control"
         type="date"
         value={dateField}
         onChange={handleDateChange}
       />
-
-      <label>N. nights:</label>
+  
+      <label>Number of nights:</label>
       <input
         className="form-control"
         type="text"
         value={nightsNumField}
         onChange={handleNightsNumChange}
       />
-
-      <div className="d-grid gap-2" style={{ marginTop: '10px' }}>
+  
+      <div className="d-grid gap-2" style={{ marginTop: '10px' }}>            
         <Button variant="success" size="sm" onClick={handleSubmit}> Confirm </Button>
         <Button variant="danger" size="sm" onClick={handleDelete}> Delete </Button>
-      </div>
-    </div>
-  );
+        </div>  
+        
+        <div style={{ maxHeight: '300px', overflow: 'auto' }}>
+        <h3>Stored Data:</h3>
+        <ul>
+          {itineraries.map((item, index) => (
+            <li key={index}>
+              <p>Stage: {item.stages[0].stage}</p>
+              <p>Name: {item.userField}</p>
+              <p>Date: {item.date}</p>             
+              <p>Hostel: {item.stages[0].hostel}</p>              
+              <p>Number of Nights: {item.stages[0].nights}</p>
+            </li>
+          ))}
+        </ul>
+      </div>             
+    </div>  
+  );  
 }
