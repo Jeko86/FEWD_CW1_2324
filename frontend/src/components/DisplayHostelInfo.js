@@ -8,7 +8,7 @@ import BookSummary from "./BookSummary";
 import SubmitBook from "./SubmitBook";
 import Stars from './stars';
 
-const DisplayHostelsInfo = ({ hostels }) => {
+const DisplayHostelInfo = ({ hostels }) => {
   const [selectHostel, setSelectHostel] = useState([]);
 
   const handleClick = (e, selectedItem) => {
@@ -75,4 +75,4 @@ const DisplayHostelsInfo = ({ hostels }) => {
     </div>
   );
 };
-export default DisplayHostelsInfo;
+export default DisplayHostelInfo;

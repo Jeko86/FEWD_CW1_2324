@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DisplayHostelsInfo from "./DisplayHostelsInfo";
+import DisplayHostelInfo from "./DisplayHostelInfo";
 import Card from 'react-bootstrap/Card';
 import Map from "./Map";
 
@@ -51,7 +51,7 @@ function Search({ hostel }) {
                 </Card>
                 <Card style={{ marginTop: '15px' }}>
                     <Card.Body>
-                        <DisplayHostelsInfo hostels={filtered} />
+                        <DisplayHostelInfo hostels={filtered} />
                     </Card.Body>
                 </Card>   
             </div>
