@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Card } from 'react-bootstrap';
+import Stars from './stars';
 
 const DisplayHostelList = () => {
   const [storedData, setStoredData] = useState([]);
@@ -6,7 +8,7 @@ const DisplayHostelList = () => {
   useEffect(() => {
     // Retrieve data from local storage
     const storedDataString = localStorage.getItem("undefined_data");
-    
+
     if (storedDataString) {
       const parsedData = JSON.parse(storedDataString);
       setStoredData(parsedData);
@@ -15,16 +17,21 @@ const DisplayHostelList = () => {
 
   return (
     <div>
-      <ul>
-        {storedData.map((item, index) => (
-          <li key={index}>
-            <strong>Name:</strong> {item.nameField}, <strong>Date:</strong> {item.date}, <strong>Nights:</strong> {item.nightsNumField}, <strong>Selected Book:</strong> {Array.isArray(item.selectedBook) ? item.selectedBook.join(", ") : item.selectedBook}
-          </li>
-        ))}
-      </ul>
+      {storedData.map((item, index) => (
+        <Card key={index} style={{ marginBottom: '10px' }}>
+          <Card.Body>
+            <Card.Title>{item.nameField}</Card.Title>
+            <Card.Text>
+              <strong>Date:</strong> {item.date}<br />
+              <strong>Nights:</strong> {item.nightsNumField}<br />
+              <strong>Selected Book:</strong> {Array.isArray(item.selectedBook) ? item.selectedBook.join(", ") : item.selectedBook}
+              <Stars position={index}/>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      ))}
     </div>
   );
 };
 
 export default DisplayHostelList;
-
