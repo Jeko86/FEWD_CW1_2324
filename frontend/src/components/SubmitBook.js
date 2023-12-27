@@ -8,7 +8,6 @@ export default function BookInput({ position }){
     const [nameField, setNameField] = useLocalStorage(`$positionInMenu_name`, "");
     const [dateField, setDateField] = useLocalStorage(`$positionInMenu_date`, ""); // New state for date input
     const [nightsNumField, setNightsNumField] = useLocalStorage(`$positionInMenu_nightsNum`, "");
-
     const [data, setData] = useLocalStorage(`${positionInMenu}_data`, []);
     const [book] = useContext(BookContext);
 

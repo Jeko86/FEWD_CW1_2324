@@ -15,11 +15,10 @@ const DisplayHostelList = () => {
 
   return (
     <div>
-      <h2>Stored Data</h2>
       <ul>
         {storedData.map((item, index) => (
           <li key={index}>
-            <strong>Name:</strong> {item.nameField}, <strong>Date:</strong> {item.date}, <strong>Nights:</strong> {item.nightsNumField}
+            <strong>Name:</strong> {item.nameField}, <strong>Date:</strong> {item.date}, <strong>Nights:</strong> {item.nightsNumField}, <strong>Selected Book:</strong> {Array.isArray(item.selectedBook) ? item.selectedBook.join(", ") : item.selectedBook}
           </li>
         ))}
       </ul>
