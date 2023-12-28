@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Card } from 'react-bootstrap';
-import Stars from './stars';
 
 const DisplayHostelList = () => {
   const [storedData, setStoredData] = useState([]);
@@ -20,12 +19,10 @@ const DisplayHostelList = () => {
       {storedData.map((item, index) => (
         <Card key={index} style={{ marginBottom: '10px' }}>
           <Card.Body>
-            <Card.Title>{item.nameField}</Card.Title>
-            <Card.Text>
-              <strong>Date:</strong> {item.date}<br />
-              <strong>Nights:</strong> {item.nightsNumField}<br />
-              <strong>Selected Book:</strong> {Array.isArray(item.selectedBook) ? item.selectedBook.join(", ") : item.selectedBook}
-              <Stars position={index}/>
+            <Card.Title>{item.selectedBook}</Card.Title>
+            <Card.Text>         
+              <strong>Start date:</strong> {item.date}<br />
+              <strong>N. nights:</strong> {item.nightsNumField}<br />            
             </Card.Text>
           </Card.Body>
         </Card>

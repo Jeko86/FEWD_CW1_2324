@@ -25,10 +25,12 @@ const DisplayHostelInfo = ({ hostels }) => {
               
               <HostelInfo hostel={hostel} />
               <div style={{ marginLeft: '20px' }}> 
-                <Stars position={index} />               
+                              
               </div>
               <Accordion.Body>
+              <p><Stars position={index} /></p> 
                 <Card>
+                  
                   <Card.Body>
                     <p>Reviews:</p>
                     <ul>
@@ -50,7 +52,7 @@ const DisplayHostelInfo = ({ hostels }) => {
                     key={hostel.id}
                     onClick={(e) => handleClick(e, hostel.name)}
                   >
-                    Book Hostel
+                    Select Hostel
                   </Button>
                 </div>
               </Accordion.Body>

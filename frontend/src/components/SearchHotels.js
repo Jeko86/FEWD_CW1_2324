@@ -20,11 +20,11 @@ function Search({ hostel }) {
 
     return (
         <div className="row">
-            <div className="col-md-8">
+            <div className="col-md-7">
                 <Map hostels={filtered}/>
             </div>    
 
-            <div className="col-md-4">
+            <div className="col-md-5">
                 <Card style={{ marginBottom: '15px' }}>
                     <Card.Body>
                         <div>

@@ -13,7 +13,7 @@ const BookingPage = () => {
           <div className="row">
             <div className="col">
               <div style={{ display: "flex", flexDirection: "column" }}>
-                <h3 style={{ marginLeft: '10px' }}>Explore Hostels</h3>
+                <h3 style={{ marginLeft: '10px' }}>Itineraries summary</h3>
                 <DisplayHostelList hostel={hostels} />                 
               </div>              
             </div>                         
