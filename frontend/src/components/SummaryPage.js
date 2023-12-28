@@ -1,11 +1,11 @@
 import React from "react";
 import useFetchData from "./UseFetchData"
-import DisplayHostelList from "./DisplayHostelList";
+import DisplayItineraryList from "./DisplayItineraryList";
 
 
 
 
-const BookingPage = () => {
+const SummaryPage = () => {
     const {status, hostels} = useFetchData();
     if (status ==='fetched')   
       return (
@@ -14,7 +14,7 @@ const BookingPage = () => {
             <div className="col">
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <h3 style={{ marginLeft: '10px' }}>Itineraries summary</h3>
-                <DisplayHostelList hostel={hostels} />                 
+                <DisplayItineraryList hostel={hostels} />                 
               </div>              
             </div>                         
           </div>     
@@ -22,4 +22,4 @@ const BookingPage = () => {
       );
   };
   
-export default BookingPage;
+export default SummaryPage;

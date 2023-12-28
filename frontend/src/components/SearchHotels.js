@@ -19,12 +19,15 @@ function Search({ hostel }) {
     });
 
     return (
-        <div className="row">
+        
+        <div className="row">            
             <div className="col-md-7">
+            <h3>Explore Hostel on the map</h3>
                 <Map hostels={filtered}/>
             </div>    
 
             <div className="col-md-5">
+            <h3>Search Hostel and create an itinerary</h3>
                 <Card style={{ marginBottom: '15px' }}>
                     <Card.Body>
                         <div>

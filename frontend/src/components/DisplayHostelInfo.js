@@ -1,11 +1,11 @@
-import React, {useState} from "react";
-import HostelInfo from "./HostelInfo";
+import React, { useState } from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import BookContext from "./BookContext";
-import BookSummary from "./BookSummary";
-import SubmitBook from "./SubmitBook";
+import ItineraryContext from "./ItineraryContext";
+import HostelInfo from "./HostelInfo";
+import ItinerarySummary from "./ItinerarySummary";
+import ItineraryInput from "./SubmitItinerary";
 import Stars from './stars';
 
 const DisplayHostelInfo = ({ hostels }) => {
@@ -22,15 +22,11 @@ const DisplayHostelInfo = ({ hostels }) => {
         <Accordion>
           {hostels.map((hostel, index) => (
             <Accordion.Item eventKey={index} key={index}>
-              
               <HostelInfo hostel={hostel} />
-              <div style={{ marginLeft: '20px' }}> 
-                              
-              </div>
+              <div style={{ marginLeft: '20px' }}></div>
               <Accordion.Body>
-              <p><Stars position={index} /></p> 
+                <p><Stars position={index} /></p> 
                 <Card>
-                  
                   <Card.Body>
                     <p>Reviews:</p>
                     <ul>
@@ -50,7 +46,7 @@ const DisplayHostelInfo = ({ hostels }) => {
                     variant="secondary"
                     size="sm"
                     key={hostel.id}
-                    onClick={(e) => handleClick(e, hostel.name)}
+                    onClick={(e) => handleClick(e, { id: hostel.id, name: hostel.name, position: [hostel.location.lat, hostel.location.long] })}
                   >
                     Select Hostel
                   </Button>
@@ -62,19 +58,14 @@ const DisplayHostelInfo = ({ hostels }) => {
       </div>
 
       <div className="col-md-5">
-        <BookContext.Provider value={[selectHostel, setSelectHostel]}>
-          <div className="row">
-            <div className="col-md-12" style={{ marginTop: '10px' }}>
-              <BookSummary />
-            </div>
-
-            <div className="col-md-12">
-              <SubmitBook />
-            </div>
-          </div>
-        </BookContext.Provider>
+        <ItineraryContext.Provider value={[selectHostel, setSelectHostel]}>
+          {/* Pass only the necessary data to BookSummary and SubmitBook */}
+          <ItinerarySummary hostels={selectHostel} />
+          <ItineraryInput hostels={selectHostel} />
+        </ItineraryContext.Provider>
       </div>
     </div>
   );
 };
+
 export default DisplayHostelInfo;

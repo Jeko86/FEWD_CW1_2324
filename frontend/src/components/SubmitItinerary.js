@@ -1,14 +1,16 @@
 import React, { useContext } from "react";
 import { useLocalStorage } from "./useLocalStorage";
-import BookContext from "./BookContext";
+import ItineraryContext from "./ItineraryContext";
 import Button from 'react-bootstrap/Button';
 
-export default function BookInput({ position }){
+let stageCounter = 1; // Counter for the stage number
+
+export default function ItineraryInput({ position }){
   const positionInMenu = JSON.stringify(position);
   const [dateField, setDateField] = useLocalStorage(`$positionInMenu_date`, ""); // New state for date input
   const [nightsNumField, setNightsNumField] = useLocalStorage(`$positionInMenu_nightsNum`, "");
-  const [data, setData] = useLocalStorage(`${positionInMenu}_data`, []);
-  const [book] = useContext(BookContext);
+  const [itinerary, setItinerary] = useLocalStorage(`${positionInMenu}_data`, []);
+  const [hostelSelected] = useContext(ItineraryContext);
 
  
   const handleDateChange = (e) => {
@@ -22,21 +24,23 @@ export default function BookInput({ position }){
 
   const handleSubmit = () => {
     // Check if required fields are empty
-    if (!dateField || !nightsNumField || !book) {
+    if (!dateField || !nightsNumField || !hostelSelected) {
       // Display an error message or handle it as per your requirement
       alert("Please fill in all the required fields");
       return;
     }
       
     const newData = {
+      stage: stageCounter++,
       date: dateField,
       nightsNumField,
-      selectedBook: book,
+      selectedBook: hostelSelected,
     };
  
     setDateField("");
-    setNightsNumField("");     
-    setData([...data, newData]);       
+    setNightsNumField("");    
+    setItinerary([...itinerary, newData]); 
+         
   };
 
   //remove inserted data from the text and date fields only

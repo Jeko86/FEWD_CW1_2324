@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/HomePage";
 import "leaflet/dist/leaflet.css";
 import NavigationBar from "./components/NavigationBar";
-import BookingPage from "./components/BookingPage";
+import SummaryPage from "./components/SummaryPage";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/booking" element={<BookingPage />} />
+            <Route path="/summary" element={<SummaryPage />} />
           </Routes>
         </BrowserRouter>
       </div>

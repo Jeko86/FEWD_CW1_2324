@@ -12,7 +12,6 @@ const Home = () => {
           <div className="row">
             <div className="col">
               <div style={{ display: "flex", flexDirection: "column" }}>
-                <h3 style={{ marginLeft: '10px' }}>Explore Hostels</h3>
                 <Search hostel={hostels} />                 
               </div>              
             </div>                         

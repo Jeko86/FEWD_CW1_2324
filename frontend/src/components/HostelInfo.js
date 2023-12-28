@@ -20,7 +20,7 @@ const HostelInfo = ({ hostel, index }) => {
 
   return (
     <div>
-      <Accordion.Header><strong>{hostel.name}</strong></Accordion.Header>
+      <Accordion.Header><strong>{hostel.id}. {hostel.name} </strong></Accordion.Header>
 
       <Accordion.Body>
 
