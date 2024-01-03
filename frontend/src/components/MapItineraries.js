@@ -1,0 +1,73 @@
+import React, { useState, useEffect } from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { Icon } from "leaflet";
+
+const MapItineraries = () => {
+  const icon = new Icon({
+    iconUrl: "/markerIcon.svg",
+    iconSize: [30, 30],
+  });
+
+  const initialMarker = {};
+  const [activeHostel, setActiveHostel] = useState(initialMarker);
+  const [positions, setPositions] = useState([]);
+
+  useEffect(() => {
+    // Retrieve data from local storage
+    const storedDataString = localStorage.getItem("undefined_data");
+
+    if (storedDataString) {
+      const parsedData = JSON.parse(storedDataString);
+      // Extract positions from stored data
+      const positionsArray = parsedData.map((item) => [
+        item.selectedBook[0].id,
+        item.selectedBook[0].name,
+        item.selectedBook[0].position,
+      ]);
+      setPositions(positionsArray);
+    }
+  }, []);
+
+  const markerClicked = (position) => {
+    // Find the corresponding hostel based on position
+    const hostel = positions.find(
+      (pos) => pos[2].join(",") === position.join(",")
+    );
+    setActiveHostel({ id: hostel[0], name: hostel[1] });
+  };
+
+  return (
+    <>
+      <MapContainer
+        style={{ height: '60vh', marginBottom: '20px'}}
+        center={[57.480662, -4.211335]}
+        zoom={7}
+        scrollWheelZoom={true}
+        class="map"
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+
+        {positions.map((position, index) => (
+          <Marker
+            key={index}
+            position={position[2]}
+            icon={icon}
+            eventHandlers={{ click: () => markerClicked(position[2]) }}
+          >
+            <Popup>
+              <div className="popup" role="alert">
+                <h6>ID: {activeHostel.id}</h6>
+                <h6>Name: {activeHostel.name}</h6>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+      </MapContainer>
+    </>
+  );
+};
+
+export default MapItineraries;
