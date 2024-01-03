@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Card, Form, Button } from 'react-bootstrap';
 import Stars from './stars';
 import { useLocalStorage } from './useLocalStorage';
@@ -7,11 +7,6 @@ const DisplayItineraryList = () => {
   const [storedData, setStoredData] = useLocalStorage("undefined_data", []);
   const [reviewerName, setReviewerName] = useState('');
   const [reviewText, setReviewText] = useState('');
-
-  useEffect(() => {
-    // You may want to load initial data from an API or other sources if needed
-    // For now, let's assume your data is already populated
-  }, []);
 
   const handleReviewSubmit = (index) => {
     const updatedData = [...storedData];
