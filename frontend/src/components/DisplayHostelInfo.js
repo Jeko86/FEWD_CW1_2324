@@ -61,7 +61,7 @@ const DisplayHostelInfo = ({ hostels }) => {
         <ItineraryContext.Provider value={[selectHostel, setSelectHostel]}>
           {/* Pass only the necessary data to BookSummary and SubmitBook */}
           <ItinerarySummary hostels={selectHostel} />
-          <ItineraryInput hostels={selectHostel} />
+          <ItineraryInput hostels={selectHostel}  />
         </ItineraryContext.Provider>
       </div>
     </div>

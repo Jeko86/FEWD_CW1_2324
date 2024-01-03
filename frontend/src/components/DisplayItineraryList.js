@@ -1,23 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Form, Button } from 'react-bootstrap';
 import Stars from './stars';
-import { useLocalStorage } from './useLocalStorage'; // Update the path accordingly
-
+import { useLocalStorage } from './useLocalStorage';
 
 const DisplayItineraryList = () => {
   const [storedData, setStoredData] = useLocalStorage("undefined_data", []);
+  const [reviewerName, setReviewerName] = useState('');
+  const [reviewText, setReviewText] = useState('');
 
   useEffect(() => {
     // You may want to load initial data from an API or other sources if needed
     // For now, let's assume your data is already populated
   }, []);
 
-  const handleReviewSubmit = (index, review) => {
+  const handleReviewSubmit = (index) => {
     const updatedData = [...storedData];
-    updatedData[index].review = review;
+    updatedData[index].review = { reviewerName, reviewText };
 
     // Update the local storage with the new data including the review
     setStoredData(updatedData);
+
+    // Clear the input fields
+    setReviewerName('');
+    setReviewText('');
   };
 
   return (
@@ -33,17 +38,30 @@ const DisplayItineraryList = () => {
               <p><Stars position={index} /></p>
               {/* Review section */}
               <Form>
+                <Form.Group controlId={`reviewerName${index}`}>
+                  <Form.Label>Your Name:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter your name"
+                    value={reviewerName}
+                    onChange={(e) => setReviewerName(e.target.value)}
+                  />
+                </Form.Group>
                 <Form.Group controlId={`reviewTextarea${index}`}>
                   <Form.Label>Write a Review:</Form.Label>
-                  <Form.Control as="textarea" rows={3} placeholder="Share your experience..." />
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Share your experience..."
+                    value={reviewText}
+                    onChange={(e) => setReviewText(e.target.value)}
+                  />
                 </Form.Group>
+
                 <div className="d-grid gap-2" style={{ marginTop: '10px' }}>
-
-                <Button variant="success" size="sm" onClick={() => handleReviewSubmit(index, document.getElementById(`reviewTextarea${index}`).value)}>
-                  Submit Review
-                </Button>
+                  <Button variant="success" size="sm" onClick={() => handleReviewSubmit(index)}> Submit Review </Button>
                 </div>
-
+                
               </Form>          
             </Card.Text>
           </Card.Body>
