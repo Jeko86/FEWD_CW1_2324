@@ -37,12 +37,13 @@ const DisplayItineraryList = () => {
                   <Form.Label>Write a Review:</Form.Label>
                   <Form.Control as="textarea" rows={3} placeholder="Share your experience..." />
                 </Form.Group>
-                <Button
-                  variant="primary"
-                  onClick={() => handleReviewSubmit(index, document.getElementById(`reviewTextarea${index}`).value)}
-                >
+                <div className="d-grid gap-2" style={{ marginTop: '10px' }}>
+
+                <Button variant="success" size="sm" onClick={() => handleReviewSubmit(index, document.getElementById(`reviewTextarea${index}`).value)}>
                   Submit Review
                 </Button>
+                </div>
+
               </Form>          
             </Card.Text>
           </Card.Body>

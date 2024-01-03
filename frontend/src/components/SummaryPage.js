@@ -10,7 +10,7 @@ const SummaryPage = () => {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col">
+          <div className="col-md-3" style={{ maxHeight: '750px', marginBottom:'10px', overflow: 'auto' }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <h3 style={{ marginLeft: '10px' }}>Itineraries summary</h3>
               <DisplayItineraryList hostels={hostels} />
