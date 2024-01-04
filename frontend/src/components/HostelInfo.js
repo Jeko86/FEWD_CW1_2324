@@ -1,7 +1,7 @@
 import React from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import { MdOutlineLocalCafe } from "react-icons/md";
-import StarAverage from "./StarAverage";
+import StaticStars from "./StaticStars";
 import Card from 'react-bootstrap/Card';
 
 
@@ -23,7 +23,7 @@ const HostelInfo = ({ hostel, index }) => {
         <p><strong>Address:</strong> {hostel.address} {hostel.postcode}</p>
         <p><strong>Email:</strong> {hostel.email}</p>
         <p>{hostel.cafe === true ? (<strong>Facilities: <MdOutlineLocalCafe /> </strong>) : (<strong>Facilities: - </strong>)}</p>
-        <p><strong>Overall rating:</strong> <StarAverage averageRating={averageRating.toFixed()}/> </p> 
+        <p><strong>Overall rating:</strong> <StaticStars averageRating={averageRating.toFixed()}/> </p> 
 
         <Card>
           <Card.Body>

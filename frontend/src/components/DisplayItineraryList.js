@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Form, Button } from 'react-bootstrap';
+import { Card, Form, Button, CardBody, CardText, CardTitle } from 'react-bootstrap';
 import Stars from './stars';
 import { useLocalStorage } from './useLocalStorage';
 
@@ -33,43 +33,54 @@ const DisplayItineraryList = () => {
               <strong>N. nights:</strong> {item.nightsNumField}<br /> 
               <p><Stars position={index} /></p>
               
+              <Card style={{marginTop: '10px'}}>
+                <CardBody>
+                  <CardTitle>Write review</CardTitle>
+                  <CardText>
+                    <Form>
+                      <Form.Group controlId={`reviewerName${index}`}>
+                        <Form.Label>Your Name:</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter your name"
+                          value={reviewerName}
+                          onChange={(e) => setReviewerName(e.target.value)}
+                        />
+                      </Form.Group>
+                      <Form.Group controlId={`reviewTextarea${index}`}>
+                        <Form.Label>Write a Review:</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          rows={3}
+                          placeholder="Share your experience..."
+                          value={reviewText}
+                          onChange={(e) => setReviewText(e.target.value)}
+                        />
+                      </Form.Group>
 
-              {/* Review section */}
-              <Form>
-                <Form.Group controlId={`reviewerName${index}`}>
-                  <Form.Label>Your Name:</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter your name"
-                    value={reviewerName}
-                    onChange={(e) => setReviewerName(e.target.value)}
-                  />
-                </Form.Group>
-                <Form.Group controlId={`reviewTextarea${index}`}>
-                  <Form.Label>Write a Review:</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    placeholder="Share your experience..."
-                    value={reviewText}
-                    onChange={(e) => setReviewText(e.target.value)}
-                  />
-                </Form.Group>
-
-                <div className="d-grid gap-2" style={{ marginTop: '10px' }}>
-                  <Button variant="success" size="sm" onClick={() => handleReviewSubmit(index)}> Submit Review </Button>
-                </div>
-                
-              </Form> 
-
+                      <div className="d-grid gap-2" style={{ marginTop: '10px' }}>
+                        <Button variant="success" size="sm" onClick={() => handleReviewSubmit(index)}> Submit Review </Button>
+                      </div>
+                    </Form>                      
+                  </CardText>
+                </CardBody>
+              </Card>            
               {/* Display Review */}
+              <Card style={{marginTop: '10px'}}>
+                <CardBody>
+                  <CardTitle>your review</CardTitle>
+                  <CardText>                    
+                    {item.review && (
+                      <div>
+                        <strong>{item.review.reviewerName}:</strong><br />
+                        {item.review.reviewText}
+                      </div>
+                    )}   
+                  </CardText>
+                </CardBody>
+              </Card>
 
-              {item.review && (
-                <div>
-                  <strong>Review by {item.review.reviewerName}:</strong><br />
-                  {item.review.reviewText}
-                </div>
-              )}         
+                    
             </Card.Text>
           </Card.Body>
         </Card>

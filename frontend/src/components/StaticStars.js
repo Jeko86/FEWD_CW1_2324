@@ -1,7 +1,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 
-export default function StarAverage({ averageRating }) {
+export default function StaticStars({ averageRating }) {
   const stars = Array.from({ length: 5 }, (_, index) => index + 1 <= averageRating);
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
 import { Icon } from "leaflet";
 
 const MapItineraries = () => {
@@ -11,6 +11,7 @@ const MapItineraries = () => {
   const initialMarker = {};
   const [activeHostel, setActiveHostel] = useState(initialMarker);
   const [positions, setPositions] = useState([]);
+  const [polylinePositions, setPolylinePositions] = useState([]);
 
   useEffect(() => {
     // Retrieve data from local storage
