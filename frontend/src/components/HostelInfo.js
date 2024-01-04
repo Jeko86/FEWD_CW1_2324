@@ -37,5 +37,3 @@ const HostelInfo = ({ hostel, index }) => {
   );
 };
 export default HostelInfo;
-
-
