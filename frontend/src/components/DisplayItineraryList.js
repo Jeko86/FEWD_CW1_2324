@@ -26,11 +26,14 @@ const DisplayItineraryList = () => {
         <Card key={index} style={{ marginBottom: '10px' }}>
           <Card.Body>
             <Card.Title>stage {item.stage}</Card.Title>
+
             <Card.Text>                    
               <strong>Hostel:</strong> {item.selectedBook[0].name}<br />  
               <strong>Start date:</strong> {item.date}<br />
               <strong>N. nights:</strong> {item.nightsNumField}<br /> 
               <p><Stars position={index} /></p>
+              
+
               {/* Review section */}
               <Form>
                 <Form.Group controlId={`reviewerName${index}`}>
@@ -57,7 +60,16 @@ const DisplayItineraryList = () => {
                   <Button variant="success" size="sm" onClick={() => handleReviewSubmit(index)}> Submit Review </Button>
                 </div>
                 
-              </Form>          
+              </Form> 
+
+              {/* Display Review */}
+
+              {item.review && (
+                <div>
+                  <strong>Review by {item.review.reviewerName}:</strong><br />
+                  {item.review.reviewText}
+                </div>
+              )}         
             </Card.Text>
           </Card.Body>
         </Card>
