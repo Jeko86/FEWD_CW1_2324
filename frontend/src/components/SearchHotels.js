@@ -49,11 +49,7 @@ function Search({ hostel }) {
                         </div>
                     </Card.Body>
                 </Card>
-                <Card style={{ marginTop: '15px' }}>
-                    <Card.Body>
-                        <DisplayHostelInfo hostels={filtered} />
-                    </Card.Body>
-                </Card>
+                <DisplayHostelInfo hostels={filtered} />
             </div>
         </div>
     );
