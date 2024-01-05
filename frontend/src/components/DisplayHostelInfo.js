@@ -51,10 +51,12 @@ const DisplayHostelInfo = ({ hostels }) => {
           </Card.Body>
         </Card>
 
-        {/* Card for ItinerarySummary */}        
-        <ItineraryContext.Provider value={[selectHostel, setSelectHostel]} >
-          <ItinerarySummary hostels={selectHostel} />
-        </ItineraryContext.Provider>
+        <div style={{ marginBottom: '10px' }}>
+          <ItineraryContext.Provider value={[selectHostel, setSelectHostel]} >
+            <ItinerarySummary hostels={selectHostel} />
+          </ItineraryContext.Provider>
+        </div>     
+        
       </div>
     </div>
   );
