@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Form, Button, CardBody, CardText, CardTitle, Modal } from 'react-bootstrap';
+import { Card, Form, Button, CardBody, CardText, CardTitle, Modal} from 'react-bootstrap';
 import Stars from './stars';
 import { useLocalStorage } from './useLocalStorage';
 
@@ -34,9 +34,8 @@ const DisplayItineraryList = () => {
     <div>
       {storedData.map((item, index) => (
         <Card key={index} style={{ marginBottom: '10px' }}>
-          <Card.Body>
+          <Card.Body>            
             <Card.Title>stage {item.stage}</Card.Title>
-
             <Card.Text>                    
               <strong>Hostel:</strong> {item.selectedBook[0].name}<br />  
               <strong>Start date:</strong> {item.date}<br />
@@ -46,7 +45,7 @@ const DisplayItineraryList = () => {
               <Card style={{marginTop: '10px'}}>
                 <CardBody>
                   <CardTitle>Write review</CardTitle>
-                  <CardText>
+                  <CardText>                   
                     <Form>
                       <Form.Group controlId={`reviewerName${index}`}>
                         <Form.Label>Your Name:</Form.Label>
@@ -88,9 +87,7 @@ const DisplayItineraryList = () => {
                     )}   
                   </CardText>
                 </CardBody>
-              </Card>
-
-                    
+              </Card>      
             </Card.Text>
           </Card.Body>
         </Card>

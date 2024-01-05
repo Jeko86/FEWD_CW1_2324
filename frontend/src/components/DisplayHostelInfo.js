@@ -16,9 +16,9 @@ const DisplayHostelInfo = ({ hostels }) => {
   return (
     <div className="row">
       <div className="col-md-7">
-        <Card>
+        <Card style={{marginBottom: '10px'}}>
           <Card.Body>
-            <Accordion style={{ maxHeight: '530px', overflow: 'auto' }}>
+            <Accordion style={{ maxHeight: '530px', overflow: 'auto'}}>
               {hostels.map((hostel, index) => (
                 <Accordion.Item eventKey={index} key={index}>
                   <HostelInfo hostel={hostel} />

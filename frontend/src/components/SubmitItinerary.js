@@ -31,7 +31,7 @@ export default function ItineraryInput({ position }){
     }
       
     const newData = {
-      stage: stageCounter++,
+      stage: stageCounter++,//implement stage number 
       date: dateField,
       nightsNumField,
       selectedBook: hostelSelected,

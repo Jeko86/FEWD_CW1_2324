@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
+import HostelInfo from "./HostelInfo";
 
 
 const Map = ({ hostels }) => {
@@ -47,7 +48,8 @@ const Map = ({ hostels }) => {
             >
                 <Popup>
                     <div className="popup" role="alert">
-                        <h6>{hostels.name}</h6>                        
+                        <h6>{hostels.name}</h6> 
+                        {hostels.address}                       
                     </div>
                 </Popup>
             </Marker>

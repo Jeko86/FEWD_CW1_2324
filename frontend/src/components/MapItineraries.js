@@ -61,24 +61,25 @@ const MapItineraries = () => {
             position={position}
             icon={icon}
             eventHandlers={{ click: () => markerClicked(position) }}
-          />
+          >
+            <Tooltip>{itineraryData[index].selectedBook[0].name}</Tooltip>
+          </Marker>
         ))}
 
         {/* Render lines */}
         {lines.map((line, index) => (
-          <Polyline key={index} positions={line.positions} color="blue">
+          <Polyline key={index} positions={line.positions} color="green">
             <Tooltip permanent>
               <span>Distance: {line.distance.toFixed(2)} miles</span>
             </Tooltip>
           </Polyline>
         ))}
-      </MapContainer> 
-
-      <div className="d-grid gap-2">
-        <Button onClick={clearLines} variant="outline-info">
-          Clear Lines
+       <div className="d-grid gap-2" style={{ position: 'absolute', bottom: '10px', left: '50%', transform: 'translateX(-50%)', zIndex: 1000 }}>
+        <Button onClick={clearLines} variant="danger">
+          Clear Distance
         </Button>
-      </div>    
+      </div>
+      </MapContainer>     
     </>
   );
 };
