@@ -23,7 +23,7 @@ const HostelInfo = ({ hostel, index }) => {
         <p><strong>Address:</strong> {hostel.address} {hostel.postcode}</p>
         <p><strong>Email:</strong> {hostel.email}</p>
         <p>{hostel.cafe === true ? (<strong>Facilities: <MdOutlineLocalCafe /> </strong>) : (<strong>Facilities: - </strong>)}</p>
-        <p><strong>Overall rating:</strong> <StaticStars averageRating={averageRating.toFixed()}/> </p> 
+        <p><strong>Overall rating:</strong> <StaticStars averageRating={averageRating.toFixed(2)}/> </p> 
 
         <Card>
           <Card.Body>

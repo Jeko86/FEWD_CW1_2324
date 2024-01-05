@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Form, Button, CardBody, CardText, CardTitle } from 'react-bootstrap';
+import { Card, Form, Button, CardBody, CardText, CardTitle, Modal } from 'react-bootstrap';
 import Stars from './stars';
 import { useLocalStorage } from './useLocalStorage';
 
@@ -7,6 +7,8 @@ const DisplayItineraryList = () => {
   const [storedData, setStoredData] = useLocalStorage("undefined_data", []);
   const [reviewerName, setReviewerName] = useState('');
   const [reviewText, setReviewText] = useState('');
+  const [showModal, setShowModal] = useState(false);
+
 
   const handleReviewSubmit = (index) => {
     const updatedData = [...storedData];
@@ -18,6 +20,14 @@ const DisplayItineraryList = () => {
     // Clear the input fields
     setReviewerName('');
     setReviewText('');
+
+    // Show the modal
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    // Close the modal
+    setShowModal(false);
   };
 
   return (
@@ -85,6 +95,15 @@ const DisplayItineraryList = () => {
           </Card.Body>
         </Card>
       ))}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Review Submitted</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <strong>Thank you for your review!</strong>
+        </Modal.Body>
+
+      </Modal>
     </div>
   );
 };

@@ -9,7 +9,7 @@ export default function StaticStars({ averageRating }) {
       {stars.map((selected, index) => (
         <FaStar
           key={index}
-          color={selected ? "red" : "gray"}
+          color={selected ? "#FFE633" : "gray"}
         />
       ))}
     </div>

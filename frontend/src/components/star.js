@@ -4,7 +4,7 @@ import { FaStar } from "react-icons/fa";
 export default function Star( props) {
   console.log (props.selected)
   return <FaStar 
-        color={props.selected ? "red" : "gray"}
+        color={props.selected ? "#FFE633" : "gray"}
         onClick={props.onSelect} 
         />;
 }

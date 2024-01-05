@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
 import { Icon } from "leaflet";
+import Button from 'react-bootstrap/Button';
 
 const MapItineraries = () => {
   const icon = new Icon({
@@ -8,10 +9,10 @@ const MapItineraries = () => {
     iconSize: [30, 30],
   });
 
-  const initialMarker = {};
-  const [activeHostel, setActiveHostel] = useState(initialMarker);
+  const [activeHostel, setActiveHostel] = useState({});
   const [positions, setPositions] = useState([]);
-  const [polylinePositions, setPolylinePositions] = useState([]);
+  const [selectedMarkers, setSelectedMarkers] = useState([]);
+  const [lines, setLines] = useState([]);
 
   useEffect(() => {
     // Retrieve data from local storage
@@ -35,17 +36,33 @@ const MapItineraries = () => {
       (pos) => pos[2].join(",") === position.join(",")
     );
     setActiveHostel({ id: hostel[0], name: hostel[1] });
+
+    // Add the clicked marker to the selectedMarkers array
+    setSelectedMarkers((prevMarkers) => [...prevMarkers, position]);
+
+    // If there are at least two markers, update the lines array
+    if (selectedMarkers.length >= 1) {
+      setLines([...lines, [selectedMarkers[selectedMarkers.length - 1], position]]);
+    }
+  };
+  const clearLines = () => {
+    setSelectedMarkers([]);
+    setLines([]);
   };
 
   return (
     <>
       <MapContainer
-        style={{ height: '80vh', marginBottom: '20px'}}
+
+        style={{ height: '78vh', marginBottom: '20px'}}
         center={[57.480662, -4.211335]}
         zoom={7}
         scrollWheelZoom={true}
-        class="map"
+        className="map"
+        
       >
+
+
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -66,7 +83,14 @@ const MapItineraries = () => {
             </Popup>
           </Marker>
         ))}
-      </MapContainer>
+
+        {/* Render lines */}
+        {lines.map((line, index) => (
+          <Polyline key={index} positions={line} color="blue" />
+        ))}  
+      </MapContainer> 
+
+      <div className="d-grid gap-2" ><Button onClick={clearLines}variant="outline-info">Clear Lines</Button></div>    
     </>
   );
 };
