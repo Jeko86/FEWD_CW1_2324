@@ -21,11 +21,11 @@ const Map = ({ hostels }) => {
 
     return (
         <>
-        <MapContainer style={{ height: '60vh', marginBottom: '20px'}}
+        <MapContainer style={{ height: '86vh', marginBottom: '20px'}}
             center={position}
             zoom={7}
             scrollWheelZoom={true}
-            class="map"
+            className="map"
         >
 
         <TileLayer
@@ -46,18 +46,21 @@ const Map = ({ hostels }) => {
             >
                 <Popup>
                     <div className="popup" role="alert">
-                        <h6>{hostels.name}</h6> 
+                        <p><strong>{hostels.name}</strong> </p>
+                        <strong>address: </strong> 
                         {hostels.address}                       
                     </div>
                 </Popup>
             </Marker>
         ))}
+        <div className="info">
+            <h3>{activeHostel.name}</h3>
+             
+            <p>{activeHostel.description}</p></div>
 
         </MapContainer>  
 
-        <div className="info" style={{ height: 'auto' }}>
-            <strong>{activeHostel.name}</strong>  
-            <p>{activeHostel.description}</p></div>          
+                  
         </>
     );
 };
