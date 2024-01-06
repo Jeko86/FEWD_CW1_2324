@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Form, Button, CardBody, CardText, CardTitle, Modal} from 'react-bootstrap';
-import Stars from './stars';
+import StarRating from "./stars";
 import { useLocalStorage } from './useLocalStorage';
 
 const DisplayItineraryList = () => {
@@ -40,7 +40,7 @@ const DisplayItineraryList = () => {
               <strong>Hostel:</strong> {item.selectedBook[0].name}<br />  
               <strong>Start date:</strong> {item.date}<br />
               <strong>N. nights:</strong> {item.nightsNumField}<br /> 
-              <p><Stars position={index} /></p>
+              <p><StarRating position={index} /></p>
               
               <Card style={{marginTop: '10px'}}>
                 <CardBody>
