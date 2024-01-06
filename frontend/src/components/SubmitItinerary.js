@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 import ItineraryContext from "./ItineraryContext";
-import Button from 'react-bootstrap/Button';
+import { Button,  Modal} from 'react-bootstrap';
 
 let stageCounter = 1; // Counter for the stage number
 
@@ -11,6 +11,7 @@ export default function ItineraryInput({ position }){
   const [nightsNumField, setNightsNumField] = useLocalStorage(`$positionInMenu_nightsNum`, "");
   const [itinerary, setItinerary] = useLocalStorage(`${positionInMenu}_data`, []);
   const [hostelSelected] = useContext(ItineraryContext);
+  const [showModal, setShowModal] = useState(false);
 
  
   const handleDateChange = (e) => {
@@ -40,7 +41,14 @@ export default function ItineraryInput({ position }){
     setDateField("");
     setNightsNumField("");    
     setItinerary([...itinerary, newData]); 
-         
+
+    // Show the modal
+    setShowModal(true);         
+  };
+
+  const handleCloseModal = () => {
+    // Close the modal
+    setShowModal(false);
   };
 
   //remove inserted data from the text and date fields only
@@ -73,6 +81,16 @@ export default function ItineraryInput({ position }){
           <Button variant="success" size="sm" onClick={handleSubmit}> Confirm </Button>
           <Button variant="danger" size="sm" onClick={handleDelete}> Delete </Button>
         </div>
+
+        <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Itinerary Submitted</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <strong>Thank you for choosing an itinerary!</strong>
+        </Modal.Body>
+
+      </Modal>
     </div>
   );   
 }
