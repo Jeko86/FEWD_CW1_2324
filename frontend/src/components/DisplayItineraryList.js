@@ -73,21 +73,7 @@ const DisplayItineraryList = () => {
                     </Form>                      
                   </CardText>
                 </CardBody>
-              </Card>            
-              {/* Display Review */}
-              <Card style={{marginTop: '10px'}}>
-                <CardBody>
-                  <CardTitle>your review</CardTitle>
-                  <CardText>                    
-                    {item.review && (
-                      <div>
-                        <strong>{item.review.reviewerName}:</strong><br />
-                        {item.review.reviewText}
-                      </div>
-                    )}   
-                  </CardText>
-                </CardBody>
-              </Card>      
+              </Card>                              
             </Card.Text>
           </Card.Body>
         </Card>

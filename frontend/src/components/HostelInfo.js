@@ -41,21 +41,20 @@ const HostelInfo = ({ hostel, index }) => {
               {userReview.map((review, reviewIndex) => (
                 <li key={reviewIndex}>
                   <p>
-                    <strong>{review.review.reviewerName}:</strong><br />
-                    {review.review.reviewText}
+                    {review.review.reviewerName}: {review.review.reviewText}
                   </p>
                 </li>
               ))}
             </ul>
             <ul>
-                {hostel.reviews.map((review, reviewIndex) => (
-                  <li key={reviewIndex}>
-                    <p>
-                      {review.reviewer}:{review.review}
-                    </p>
-                  </li>
-                ))}
-              </ul>
+              {hostel.reviews.map((review, reviewIndex) => (
+                <li key={reviewIndex}>
+                  <p>
+                    {review.reviewer}: {review.review}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </Card.Body>
         </Card>
       </Accordion.Body>
