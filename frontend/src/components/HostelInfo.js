@@ -21,7 +21,7 @@ const HostelInfo = ({ hostel, index }) => {
   console.log('array: ',reviewData )
 
   // Filter reviews for the current hostel
-  const userReview = reviewData.filter((item) => item.selectedBook[0].id === hostel.id);
+  const userReview = reviewData && reviewData.filter((item) => item.selectedBook[0].id === hostel.id);
 
   console.log('reviewData:', userReview);
 
@@ -38,14 +38,18 @@ const HostelInfo = ({ hostel, index }) => {
           <Card.Body>
             <p>Reviews:</p>
             <ul>
-              {userReview.map((review, reviewIndex) => (
-                <li key={reviewIndex}>
-                  <p>
-                    {review.review.reviewerName}: {review.review.reviewText}
-                  </p>
-                </li>
-              ))}
+              {userReview
+                .filter((review) => review.review && review.review.reviewerName)
+                .map((review, reviewIndex) => (
+                  <li key={reviewIndex}>
+                    <p>
+                      <span>{review.review.reviewerName}: </span>
+                      <span>{review.review.reviewText}</span>
+                    </p>
+                  </li>
+                ))}
             </ul>
+
             <ul>
               {hostel.reviews.map((review, reviewIndex) => (
                 <li key={reviewIndex}>
@@ -55,6 +59,7 @@ const HostelInfo = ({ hostel, index }) => {
                 </li>
               ))}
             </ul>
+            
           </Card.Body>
         </Card>
       </Accordion.Body>
