@@ -44,7 +44,7 @@ const MapItineraries = () => {
   return (
     <>
       <MapContainer
-        style={{ height: '87vh', marginBottom: '20px'}}
+        style={{ height: '85vh', marginBottom: '20px'}}
         center={[57.480662, -4.211335]}
         zoom={7}
         scrollWheelZoom={true}

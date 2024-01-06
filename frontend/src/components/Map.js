@@ -21,7 +21,7 @@ const Map = ({ hostels }) => {
 
     return (
         <>
-        <MapContainer style={{ height: '86vh', marginBottom: '20px'}}
+        <MapContainer style={{ height: '85vh', marginBottom: '20px'}}
             center={position}
             zoom={7}
             scrollWheelZoom={true}
