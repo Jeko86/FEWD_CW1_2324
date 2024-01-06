@@ -9,6 +9,11 @@ const DisplayItineraryList = () => {
   const [reviewText, setReviewText] = useState('');
   const [showModal, setShowModal] = useState(false);
 
+  const formatDate = (dateString) => {
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    const formattedDate = new Date(dateString).toLocaleDateString(undefined, options);
+    return formattedDate;
+  };
 
   const handleReviewSubmit = (index) => {
     const updatedData = [...storedData];
@@ -38,7 +43,7 @@ const DisplayItineraryList = () => {
             <Card.Title>stage {item.stage}</Card.Title>
             <Card.Text>                    
               <strong>Hostel:</strong> {item.selectedBook[0].name}<br />  
-              <strong>Start date:</strong> {item.date}<br />
+              <strong>Start date:</strong> {formatDate(item.date)}<br />
               <strong>N. nights:</strong> {item.nightsNumField}<br /> 
               <p><StarRating position={index} /></p>
               
