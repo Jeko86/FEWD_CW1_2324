@@ -16,6 +16,13 @@ const DisplayItineraryList = () => {
   };
 
   const handleReviewSubmit = (index) => {
+    // Check if required fields are empty
+    if (!reviewerName  || !reviewText) {
+      // Display an error message or handle it as per your requirement
+      alert("Please fill in all the required fields");
+      return;
+    }
+
     const updatedData = [...storedData];
     updatedData[index].review = { reviewerName, reviewText };
 
