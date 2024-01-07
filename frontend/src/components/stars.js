@@ -12,9 +12,8 @@ export default function StarRating({ position, totalStars = 5 }) {
   return (
     
     <div>
-      <p>
-        <strong>rating the hostel:</strong>
-      </p>
+      <strong>rating the hostel selecting stars: </strong>
+      
       {createArray(totalStars).map((n, i) => (
         <Star
           key={i}
