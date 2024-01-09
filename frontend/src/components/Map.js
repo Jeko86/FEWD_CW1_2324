@@ -27,40 +27,36 @@ const Map = ({ hostels }) => {
             scrollWheelZoom={true}
             className="map"
         >
+            <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
 
-        <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+            {hostels.map((hostels, index) => (
+                <Marker           
+                    key={hostels.id}
+                    position={[
+                        hostels.location.lat, 
+                        hostels.location.long,
+                    ]}
+                    icon={icon}
+                    eventHandlers={{ click: () => markerClicked(hostels) }}  
+                >
+                    <Popup>
+                        <div className="popup" role="alert">
+                            <p><strong>{hostels.name}</strong> </p>
+                            <strong>address: </strong> 
+                            {hostels.address}                       
+                        </div>
+                    </Popup>
+                </Marker>
+            ))}
 
-        {hostels.map((hostels, index) => (
-            <Marker           
-                key={hostels.id}
-                position={[
-                    hostels.location.lat, 
-                    hostels.location.long,
-                ]}
-                icon={icon}
-
-                eventHandlers={{ click: () => markerClicked(hostels) }}  
-            >
-                <Popup>
-                    <div className="popup" role="alert">
-                        <p><strong>{hostels.name}</strong> </p>
-                        <strong>address: </strong> 
-                        {hostels.address}                       
-                    </div>
-                </Popup>
-            </Marker>
-        ))}
-        <div className="info">
-            <h3>{activeHostel.name}</h3>
-             
-            <p>{activeHostel.description}</p></div>
-
-        </MapContainer>  
-
-                  
+            <div className="info">
+                <h3>{activeHostel.name}</h3>            
+                <p>{activeHostel.description}</p></div>
+                
+        </MapContainer>                 
         </>
     );
 };

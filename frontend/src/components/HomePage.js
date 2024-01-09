@@ -2,8 +2,6 @@ import React from "react";
 import useFetchData from "./UseFetchData"
 import Search from "./SearchHotels";
 
-
-
 const Home = () => {
     const {status, hostels} = useFetchData();
     if (status ==='fetched')   

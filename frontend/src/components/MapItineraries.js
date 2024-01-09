@@ -27,7 +27,7 @@ const MapItineraries = () => {
     // If there are at least two markers, update the lines array
     if (selectedMarkers.length >= 1) {
       const lastPosition = selectedMarkers[selectedMarkers.length - 1];
-      const distanceInMiles = latLng(lastPosition).distanceTo(latLng(position)) / 1609.344; // Conversione diretta da metri a miglia
+      const distanceInMiles = latLng(lastPosition).distanceTo(latLng(position)) / 1609.344; // convertion of meters in miles
 
       // Display distance in miles
       console.log(`Distance between markers: ${distanceInMiles.toFixed(2)} miles`);

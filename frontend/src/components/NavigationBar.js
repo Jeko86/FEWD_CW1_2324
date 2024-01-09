@@ -4,12 +4,10 @@ import Navbar from 'react-bootstrap/Navbar';
 
 function NavScroll() {
   const navbarStyle = {
-    backgroundColor: '#d5d3e4', // Your desired background color
+    backgroundColor: '#d5d3e4', // background color
     color: '#fff', // Text color
-    // Add any additional styles you need
   };
-  return (
-    
+  return (   
     <Navbar expand="lg" style={navbarStyle}>
       <Container fluid>
         <Navbar.Brand href="/">Youth Hostels</Navbar.Brand>

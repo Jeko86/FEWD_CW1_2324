@@ -12,7 +12,6 @@ export default function ItinerarySummary() {
     
   };
   
-
   return (
     <div>
       <ul className = "list-group">
@@ -22,8 +21,7 @@ export default function ItinerarySummary() {
             <CloseButton
               className="float-left"
               onClick={(e) => removeHostel(e, hostels)}
-            />
-            
+            />           
           </li>
         ))}
       </ul>

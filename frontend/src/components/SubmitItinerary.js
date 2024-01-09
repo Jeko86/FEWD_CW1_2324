@@ -59,8 +59,6 @@ export default function ItineraryInput({ position }){
 
   return (
     <div>
-
-    
         <label>Choose a date:</label>
         <input
           className="form-control"

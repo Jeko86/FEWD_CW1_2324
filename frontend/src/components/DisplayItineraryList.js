@@ -90,6 +90,7 @@ const DisplayItineraryList = () => {
           </Card.Body>
         </Card>
       ))}
+
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Review Submitted</Modal.Title>
@@ -97,7 +98,6 @@ const DisplayItineraryList = () => {
         <Modal.Body>
           <strong>Thank you for your review!</strong>
         </Modal.Body>
-
       </Modal>
     </div>
   );
