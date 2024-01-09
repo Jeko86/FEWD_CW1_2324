@@ -13,7 +13,7 @@ const SummaryPage = () => {
           <div className="col-md-3" >
             <div style={{ display: "flex", flexDirection: "column" }}>
               <h3 style={{ marginLeft: '10px' }}>Itineraries summary</h3>
-              <div style={{ maxHeight: '720px', marginBottom:'10px', overflow: 'auto' }}>
+              <div style={{ maxHeight: '705px', marginBottom:'10px', overflow: 'auto' }}>
                 <DisplayItineraryList hostels={hostels} />
               </div>
             </div>
